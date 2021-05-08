@@ -13,7 +13,6 @@
 		String name , id, pw, majorOne, protocol;
 		String[] hobbies, majors;
 	
-		request.setCharacterEncoding("utf-8");
 		name = request.getParameter("name");
 		id = request.getParameter("id");
 		pw = request.getParameter("pw");

@@ -16,8 +16,6 @@
 
 <br>
 <br>
-<br>
-<br>
 	2 ^ 1 = <%=decsquare(2,1) %><br>
 	2 ^ 2 = <%=decsquare(2,2) %><br>
 	2 ^ 3 = <%=decsquare(2,3) %><br>
@@ -46,10 +44,11 @@
 	public int  decsquare(int a, int b){
 		int rs = 1;
 		for(int i=0; i< b; i++){
-			rs*= a;
+			rs*= a; // rs= rs*a
 		}
 		return rs;
 } 
+	
 %>
 
 

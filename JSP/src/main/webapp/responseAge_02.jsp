@@ -9,14 +9,13 @@
 <body>
 <%
 	request.setCharacterEncoding("utf-8");	
-	String Age = request.getParameter("Age");
-	int Age_val = Integer.parseInt(Age);
+	int Age = Integer.parseInt(request.getParameter("Age"));
 	
 
-	if(Age_val>19){
-		response.sendRedirect("responseAge_03.jsp?Age=" + Age_val);
+	if(Age>19){
+		response.sendRedirect("responseAge_03.jsp?Age=" + Age);
 	} else
-		response.sendRedirect("responseAge_04.jsp?Age=" + Age_val);
+		response.sendRedirect("responseAge_04.jsp?Age=" + Age);
 %>
 </body>
 </html>

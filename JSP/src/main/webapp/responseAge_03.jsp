@@ -16,7 +16,7 @@ String Age = request.getParameter("Age");
 <br>
 당신의 나이는 <%=Age %>살 이므로 주류 구매가 가능합니다.
 <br>
-<a href="http://localhost:8080/JSP/responseAge_01.jsp">처음으로 이동</a>
+<a href="responseAge_01.jsp">처음으로 이동</a>
 
 </body>
 </html>
