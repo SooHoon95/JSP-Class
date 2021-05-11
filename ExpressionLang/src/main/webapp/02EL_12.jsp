@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-//어트리뷰트로 지정해준 경우 어트리뷰트 이름만 가져온다.
-%>
 	<h3>이달의 인기 과일 목록</h3>
 		1위 : ${FRUITS[0] }<br>
 		2위 : ${FRUITS[1] }<br>

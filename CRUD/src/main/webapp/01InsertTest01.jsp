@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	아이디 : ${param.id }<br>
-	선택한 동물 : ${paramValues.animal[0] }
-				${paramValues.animal[1] }
-				${paramValues.animal[2] }
+
+	<h3>데이터 입력을 위한 테스</h3>
+	<form action="01InsertTest02.jsp" method ="get">
+		사용자 ID : <input type="text" name="userid" size="10">
+		<input type="submit" value="OK">
+	
+	</form>
 </body>
 </html>

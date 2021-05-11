@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	아이디 : ${param.id }<br>
-	선택한 동물 : ${paramValues.animal[0] }
-				${paramValues.animal[1] }
-				${paramValues.animal[2] }
+<h1>Fail</h1>
+
+
+
 </body>
 </html>

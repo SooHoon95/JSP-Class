@@ -29,6 +29,12 @@ public class _02_Exercise_01S extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		for(int i=1; i<10; i++) {
+			
+		}
+	
+	
+	
 	}
 
 	/**
