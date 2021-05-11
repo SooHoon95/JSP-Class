@@ -19,7 +19,6 @@
 	<option value="<%=i%>" selected="selected"><%=i%></option>
 	<%} %>
 	</select>
-	X
 	<select name="selectNum2">
 	<%for(int i=1; i<1000; i++){ %>
 	<option value="<%=i%>" selected="selected"><%=i%></option>

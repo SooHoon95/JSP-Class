@@ -8,11 +8,12 @@
 </head>
 <body>
 	<form action="_02_Exercise_01S" method="post">
-	입력 : <input type="text" name="Num">
+	입력 : <input type="text" name="Num"> 
 	<input type="submit" value="구구단 계산">
+	<input type="text" name="test">
 	
-	</form>
+	</form> 
 
 
 </body>
-</html>
+</html> 
