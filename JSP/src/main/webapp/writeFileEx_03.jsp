@@ -14,7 +14,7 @@
 
 	String result = request.getParameter("result");
 	
-	if (result == "result"){
+	if (result.equals("sucess")){
 		out.print("저장되었습니다");		
 	}else {
 		out.print("파일에 문제가 발생했습니다.");
@@ -23,7 +23,7 @@
 %>
 <br>
 <br>
-<form action="writeFileEx_04,jsp">
+<form action="writeFileEx_04.jsp">
  		<input type="submit" value="저장결과 불러오기">
 
 </form>

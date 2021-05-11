@@ -17,8 +17,8 @@
 		String filename = "file1.txt";
 		String result;
 		
-		
 		PrintWriter writer = null;
+		
 		try{
 			
 			String filePath = application.getRealPath("/" + filename);
