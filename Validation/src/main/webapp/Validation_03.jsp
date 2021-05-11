@@ -9,6 +9,7 @@
 	<script type="text/javascript">
 		function checkLogin(){
 			var form = document.loginForm
+			
 			if(form.id.value == ""){
 				alert("아이디를 입력해주세요!");
 				form.id.focus();
@@ -21,12 +22,12 @@
 			//Length Check
 			if(form.id.value.length <4 || form.id.value.length > 12 ){
 				alert("아이디는 4~12 자리 이내로 입력 가능 합니다.");
-				fomr.id.focus();
+				form.id.focus();
 				return false;
 			}
 			if(form.passwd.value.length < 4){
 				alert("비밀번호는 4자 이상으로 입력해주세요.");
-				fomr.passwd.select();
+				form.passwd.select();
 				return false;
 			}
 			
