@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%// JSTL이거 쓸거다라고 위에서 선언해줘야함 %>
 <c:set var = "num1" value="7"/>
 <c:set var = "num2" value="9"/>
