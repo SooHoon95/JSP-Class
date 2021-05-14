@@ -55,7 +55,7 @@
 			<div class="hr-sect">아직 회원이 아니신가요?</div>
 			<br>
 	</form>
-	
+		
 	<form action="signUp.jsp" method="post">
 		<input type="submit" value="회원가입">
 	</form>
