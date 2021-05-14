@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+<<<<<<< HEAD
 import org.apache.jasper.tagplugins.jstl.core.Catch;
 
 import com.jsplec.bbs.dto.BDto;
@@ -39,24 +40,59 @@ public class BDao {
 		// 전역번수 쓰려고 여기에 만듬
 		ArrayList<BDto> dtos = new ArrayList<BDto>();
 		
+=======
+import com.jsplec.bbs.dto.BDto;
+
+public class BDao {
+
+	DataSource dataSource;
+	
+	public BDao() {
+		try {
+			/*javax.naming*/
+			Context context = new InitialContext();
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mvc"); //env까지 쓴거만 보면 context에 들어간 거/저 경로로 가서 찾아와라 라는 뜻
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public ArrayList<BDto> list(){
+		ArrayList<BDto> dtos = new ArrayList<BDto>();
+		
+		//java.sql
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		
 		try {
 			connection = dataSource.getConnection();
+<<<<<<< HEAD
 			
 			String query = "select bId, bName, bTitle, bContent, bDate from mvc_board";
+=======
+		
+			String query = "select bid, bname, bTitle, bContent, bDate from mvc_board";
+			
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
+<<<<<<< HEAD
 				int bId = resultSet.getInt("bId");
 				// bId는 query에 있는 이름
+=======
+				
+				int bid = resultSet.getInt("bid");
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 				String bName = resultSet.getString("bName");
 				String bTitle = resultSet.getString("bTitle");
 				String bContent = resultSet.getString("bContent");
 				Timestamp bDate = resultSet.getTimestamp("bDate");
+<<<<<<< HEAD
 				
 				BDto dto = new BDto(bId, bName, bTitle, bContent, bDate);
 				dtos.add(dto);
@@ -74,10 +110,27 @@ public class BDao {
 				
 			}catch (Exception e) {
 				// TODO: handle exception
+=======
+			
+				BDto dto = new BDto(bid, bName, bTitle, bContent, bDate);
+				dtos.add(dto);
+			
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (resultSet != null) resultSet.close();
+				if (preparedStatement != null) preparedStatement.close();
+				if (connection!= null) connection.close();
+			} catch (Exception e) {
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 				e.printStackTrace();
 			}
 		}
 		return dtos;
+<<<<<<< HEAD
 	}
  	
 	public void write(String bName, String bTitle, String bContent) {
@@ -111,21 +164,60 @@ public class BDao {
 				
 			}catch (Exception e) {
 				// TODO: handle exception
+=======
+		
+	}
+	
+	
+	public void write(String bName, String bTitle, String bContent) {
+		//java.sql
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+		
+			String query = "insert into mvc_board (bName, bTitle, bContent, bDate) values(?, ?, ?, now())";
+			
+			preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setString(1, bName);
+			preparedStatement.setString(2, bTitle);
+			preparedStatement.setString(3, bContent);
+			preparedStatement.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (preparedStatement != null) preparedStatement.close();
+				if (connection!= null) connection.close();
+			} catch (Exception e) {
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 				e.printStackTrace();
 			}
 		}
 	}
 	
+<<<<<<< HEAD
 	// db에서 검색해 오는 것! 한 줄만 가져오는 것! -> 한 줄만 가져오기에 arraylist 쓰지말고 bean을 쓰자!
 	public BDto contentView(String strID) {
 		BDto dto = null;
 		
+=======
+	
+	public BDto contentView(String strID) {
+		
+		BDto dto = null;
+		//java.sql
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		
 		try {
 			connection = dataSource.getConnection();
+<<<<<<< HEAD
 			
 			// select 문장에 ? 적어주기!
 			String query = "select * from mvc_board where bId = ?";
@@ -139,10 +231,23 @@ public class BDao {
 			if(resultSet.next()) { // 한 번만 돌기 때문에 while 안쓰고 if 써도 괜찮음
 				int bId = resultSet.getInt("bId");
 				// bId는 query에 있는 이름
+=======
+		
+			String query = "select * from mvc_board where bid = ?";
+			
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, Integer.parseInt(strID));
+			resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				
+				int bid = resultSet.getInt("bid");
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 				String bName = resultSet.getString("bName");
 				String bTitle = resultSet.getString("bTitle");
 				String bContent = resultSet.getString("bContent");
 				Timestamp bDate = resultSet.getTimestamp("bDate");
+<<<<<<< HEAD
 				
 				dto = new BDto(bId, bName, bTitle, bContent, bDate);
 			}
@@ -159,12 +264,28 @@ public class BDao {
 				
 			}catch (Exception e) {
 				// TODO: handle exception
+=======
+			
+				dto = new BDto(bid, bName, bTitle, bContent, bDate);
+			
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (resultSet != null) resultSet.close();
+				if (preparedStatement != null) preparedStatement.close();
+				if (connection!= null) connection.close();
+			} catch (Exception e) {
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 				e.printStackTrace();
 			}
 		}
 		return dto;
 	}
 	
+<<<<<<< HEAD
 	public void delete(String strID) {
 		
 		Connection connection = null;
@@ -237,3 +358,81 @@ public class BDao {
 		}
 	}
 }
+=======
+	
+	public void delete(int bid) {
+		
+		//java.sql
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = dataSource.getConnection();
+		
+			String query = "delete from mvc_board where bid = ? ";
+			
+			preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setInt(1, bid);
+			preparedStatement.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (resultSet != null) resultSet.close();
+				if (preparedStatement != null) preparedStatement.close();
+				if (connection!= null) connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}		
+	
+	public void modify(String bName, String bTitle, String bContent, int bid) {
+		ArrayList<BDto> dtos = new ArrayList<BDto>();
+		
+		//java.sql
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = dataSource.getConnection();
+		
+			String query = "update mvc_board set bName=?, bTitle=?, bContent=?, bDate = now() where bid=?";
+			
+			preparedStatement = connection.prepareStatement(query);
+			
+				
+				preparedStatement.setString(1, bName);
+				preparedStatement.setString(2, bTitle);
+				preparedStatement.setString(3, bContent);
+				preparedStatement.setInt(4, bid);
+				preparedStatement.executeUpdate();
+				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (resultSet != null) resultSet.close();
+				if (preparedStatement != null) preparedStatement.close();
+				if (connection!= null) connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+
+}//=======
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)

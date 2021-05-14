@@ -9,11 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
 import com.jsplec.bbs.command.BCommnad;
 import com.jsplec.bbs.command.BContentCommand;
 import com.jsplec.bbs.command.BDeleteCommand;
 import com.jsplec.bbs.command.BListCommand;
 import com.jsplec.bbs.command.BUpdateCommand;
+=======
+import com.jsplec.bbs.command.BCommand;
+import com.jsplec.bbs.command.BContentCommand;
+import com.jsplec.bbs.command.BDeleteCommand;
+import com.jsplec.bbs.command.BListCommand;
+import com.jsplec.bbs.command.BModifyCommand;
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 import com.jsplec.bbs.command.BWriteCommand;
 
 /**
@@ -36,9 +44,13 @@ public class BFrontController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		// 흔적을 남기고 코딩하는 게 좋다!
 		System.out.println("doGet()");
 		//post로 들어오든 get으로 들어오든 actionDo로 들어옴!
+=======
+		System.out.println("doGet");
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 		actionDo(request, response);
 	}
 
@@ -46,6 +58,7 @@ public class BFrontController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		// TODO Auto-generated method stub
 		// 흔적을 남기고 코딩하는 게 좋다!
 		System.out.println("doPost()");
@@ -87,13 +100,50 @@ public class BFrontController extends HttpServlet {
 			break;
 		case("/write_view.do"):
 			// 입력할 화면 보여주는 것임
+=======
+		System.out.println("doPost");
+		actionDo(request, response);
+	}
+	
+	//서블렛에서 메소드 만들기
+	//실행시킬때는 MVCBoard에서 실행시켜야함
+	//실행하고는 반드시 웹서버 끄고 다시 작업한다.
+	//안그러면 에러 디진당.ㅎ
+	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		System.out.println("actionDo()");
+		request.setCharacterEncoding("UTF-8");
+	
+		String uri = request.getRequestURI();
+		String conPath = request.getContextPath();
+		String com = uri.substring(conPath.length());
+		
+		String viewPage = null;
+		BCommand command = null;
+		
+		System.out.println(uri);
+		System.out.println(conPath);
+		System.out.println(com);
+		
+		switch(com) {
+		
+		case("/list.do"):  //여기 컴의 문자가 어떤 모양이냐
+			command = new BListCommand();
+			command.execute(request, response);
+			viewPage ="list.jsp";
+			break;
+			
+		case("/write_view.do"):
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 			viewPage = "write_view.jsp";
 			break;
 		case("/write.do"):
 			command = new BWriteCommand();
 			command.execute(request, response);
 			viewPage = "list.do";
+<<<<<<< HEAD
 			// list.jsp 적으면 비어있는 화면 나옴! list.do 적고 case로 다시 들어가서 화면 불러오기
+=======
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 			break;
 		case("/content_view.do"):
 			command = new BContentCommand();
@@ -106,6 +156,7 @@ public class BFrontController extends HttpServlet {
 			viewPage = "list.do";
 			break;
 		case("/modify.do"):
+<<<<<<< HEAD
 			command = new BUpdateCommand();
 			command.execute(request, response);
 			viewPage = "list.do";
@@ -120,3 +171,25 @@ public class BFrontController extends HttpServlet {
 		
 	}
 } 
+=======
+			command = new BModifyCommand();
+			command.execute(request, response);
+			viewPage = "list.do";
+			break;
+		}
+			
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+		dispatcher.forward(request, response);
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+
+}//================
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.jsplec.bbs.dao.BDao;
 import com.jsplec.bbs.dto.BDto;
 
+<<<<<<< HEAD
 public class BListCommand implements BCommnad {
 	// 메인 없음!
 	
@@ -23,6 +24,16 @@ public class BListCommand implements BCommnad {
 		// Arraylist 메소드 실행
 		ArrayList<BDto> dtos = dao.list();
 		// 이제 jsp에 보내줘야 함 (근데 get방식으로 넘기면 할 일이 많아짐 ? & 이거 계속 써야하기 때문!)
+=======
+public class BListCommand implements BCommand {
+
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		// DB에서 전체정보 읽어서 attribute로 jsp에 전달하기
+
+		BDao dao = new BDao();
+		ArrayList<BDto> dtos = dao.list();
+>>>>>>> parent of 240db0f (Delete MVCBoard/src/main directory)
 		request.setAttribute("list", dtos);
 	}
 
