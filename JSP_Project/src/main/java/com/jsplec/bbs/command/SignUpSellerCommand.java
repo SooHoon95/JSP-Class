@@ -29,7 +29,7 @@ public class SignUpSellerCommand implements Command {
 		
 		
 		String sBirth = sBirthY + "-" + sBirthM + "-" + sBirthD;
-		String sEmail = (request.getParameter("sBirthD"));
+		String sEmail = (request.getParameter("sEmail"));
 		String sPostalCode = (request.getParameter("sPostalCode"));
 		String sAddress1 = request.getParameter("sAddress1");
 		String sAddress2 = request.getParameter("sAddress2");

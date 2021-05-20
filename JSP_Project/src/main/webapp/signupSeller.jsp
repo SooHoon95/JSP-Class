@@ -57,7 +57,6 @@
 		var url = 'sIdCheck.jsp?sId='+ sId
 		window.open(url, 'chkFrom', 'width=500, height=300, resizable=no, scrollbars=no');
 	}
-
 </script>
 <!-- Jquery의 Validate를 이용한 정규식 및 로그인 확인 -->
 <script>
@@ -68,21 +67,28 @@ $(function(){
   $("form").validate({
       //validation이 끝난 이후의 submit 직전 추가 작업할 부분
       submitHandler: function() {
+          var form = document.signupSellerForm;
           var f = confirm("회원가입을 완료하겠습니까?");
-          var form = documenmht.signupSellerForm;
-          if(f){
-             alert(form.sName.value + "님의 회원가입이 완료되었습니다!")
-              return true;
-             
-          } else {
-              return false;
-          }
+          
+	          if(form.idDuplication.value != "idCheck"){
+	        	  alert('중복체크를 진행하세요');
+	        	  return false;
+	          }
+	          if(f){
+	             alert(form.sName.value + "님의 회원가입이 완료되었습니다!")
+	              return true;
+	             
+	          } else {
+	              return false;
+	          }
+        	  
+          
       },
       //규칙
       rules: {
     	  sId: {
               required : true,
-              regx : /^[a-z0-9]{4,20}$/
+              regx : /^[a-z0-9]{6,20}$/
           },
           sPw: {
               required : true,
@@ -119,6 +125,9 @@ $(function(){
           sNumber: {
         	  required : true
           },
+	          idDuplication:{
+	        	  equalTo : '#idDuplication2'
+          }
       },
       
       //규칙체크 실패시 출력될 메시지
@@ -161,13 +170,17 @@ $(function(){
             },
             sNumber: {
               required : "필수입력사항입니다."
+            },
+            idDuplication:{
+          	  equalTo : "아이디 중복체크가 되지않았습니다."
             }
         }
   });
 })
 </script>
 <body>
-<form name ="signupSellerForm" id="signupSellerForm" action="signupSeller.do">
+<form name ="signupSellerForm" id="signupSellerForm" action="signupSeller.do" 
+onsubmit="checkValue()">
 	<h3>회원가입</h3>
 	<hr>
 		<table>
@@ -176,9 +189,9 @@ $(function(){
 			</tr>
 			<tr>
 				<td> <input type="text" name="textid" value="아이디*" readonly="readonly" style="text-align: center" onkeydown="inputIdChk()"></td>
-				<td> <input type="text" name="sId" id="sId" placeholder="아이디를 입력하세요">
+				<td> <input type="text" name="sId" id="sId" placeholder="아이디를 입력하세요" onkeydown="inputsIdChk()">
 				<input type="button" name="Idcheck" value="중복체크" onclick="opensIdChk(this.form.sId.value)">
-				<input type="hidden" name ="idDuplication" value="idUncheck">
+				<input type="hidden" name ="idDuplication"id="idDuplication" value="idUncheck" size="1">
 				</td>
 				
 			</tr>		

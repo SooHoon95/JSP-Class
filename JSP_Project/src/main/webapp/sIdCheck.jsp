@@ -45,24 +45,25 @@ $(function(){
   $.validator.addMethod("regx",function(value,elemqnt,regexpr){
       return regexpr.test(value);
   });  
+  
   $("form").validate({
       //규칙
       rules: {
     	  sId: {
               required : true,
-              regx : /^[a-z0-9]{4,20}$/
+              regx : /^[a-z0-9]{6,20}$/
           },
       },
-      
       //규칙체크 실패시 출력될 메시지
       messages : {
           sId: {
                 required : "필수입력사항입니다.",
                 regx : "아이디는 문자 6~20자입니다"
-            }
+            },
         }
   });
 })
+
 </script>
 <body>
 
@@ -79,7 +80,7 @@ $(function(){
 </center>
 </div>
 
-<form name="sIdchkForm"  method="post">
+<form name="sIdchkForm" id="sIdchkForm" method="post">
 <div>
 <center>
 	
