@@ -40,19 +40,20 @@
         }).open();
     }
 </script>
-<script>
-	function info_chk() {
-		return true;
+
+<script type="text/javascript">
+	function inputcIdChk() {
+		doucument.signupSellerForm.idDuplication.value ="idUncheck";
 	}
-	function Id_chk(frm) {
-		frm.action='';
-		frm.submit();
-		return true;
+	function opencIdChk(cId) {
+		var url = 'cIdCheck.jsp?cId='+ cId
+		window.open(url, 'chkFrom', 'width=500, height=300, resizable=no, scrollbars=no');
 	}
+
 </script>
 
 <body>
-	<form action="signupCustomer.do">
+	<form name="signupCustomerForm" action="signupCustomer.do">
 	<h3>회원가입</h3>
 	<hr>
 		<table>
@@ -63,7 +64,9 @@
 			
 				<td> <input type="text" name="textid" value="아이디*" readonly="readonly" style="text-align: center"></td>
 				<td> <input type="text" name="cId"	>
-				<input type="button" name="Idcheck" value="중복체크" onclick=" return Id_chk(this.form);"></td>
+				<input type="button" name="Idcheck" value="중복체크" onclick=" opencIdChk(this.form.cId.value);">
+				<input type="hidden" name ="idDuplication" value="idUncheck">
+				</td>
 			</tr>		
 			<tr>
 				<td> <input type="text" name="textpw" value="비밀번호*" readonly="readonly" style="text-align: center"></td>

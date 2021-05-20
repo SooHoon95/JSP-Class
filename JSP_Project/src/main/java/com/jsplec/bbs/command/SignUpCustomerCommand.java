@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.jsplec.bbs.dao.Dao_signUp;
+import com.jsplec.bbs.dao.Dao_signUpCustomer;
 
 public class SignUpCustomerCommand implements Command {
 
@@ -24,8 +24,8 @@ public class SignUpCustomerCommand implements Command {
 		String cAddress1 = request.getParameter("cAddress1");
 		String cAddress2 = request.getParameter("cAddress2");
 		
-		Dao_signUp dao = new Dao_signUp();
-		dao.writeCustomer(cId, cPassword, cName, cBirth, cTel, cAddress1, cAddress2, cEmail, cNickname, cPostalCode);
+		Dao_signUpCustomer dao = new Dao_signUpCustomer();
+//		dao.writeCustomer(cId, cPassword, cName, cBirth, cTel, cAddress1, cAddress2, cEmail, cNickname, cPostalCode);
 		
 		
 		

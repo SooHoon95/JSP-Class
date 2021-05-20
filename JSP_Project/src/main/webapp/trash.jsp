@@ -69,9 +69,9 @@ $(function(){
       //validation이 끝난 이후의 submit 직전 추가 작업할 부분
       submitHandler: function() {
           var f = confirm("회원가입을 완료하겠습니까?");
-          var form = documenmht.signupSellerForm;
+          var form = documenmht.frm;
           if(f){
-             alert(form.sName.value + "님의 회원가입이 완료되었습니다!")
+             alert(form.name.value + "회원가입이 완료되었습니다!")
               return true;
              
           } else {
@@ -80,17 +80,18 @@ $(function(){
       },
       //규칙
       rules: {
-    	  sId: {
+    	  sEmail: {
               required : true,
-              regx : /^[a-z0-9]{4,20}$/
+              regx : /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+          	  remote: 
           },
-          sPw: {
+          sPassword: {
               required : true,
               regx : /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{6,20}$/
           },
           sPwcheck: {
-              required : true,	
-              equalTo : '#sPw'
+              required : true,
+              equalTo : pw
           },
           sName: {
               required : true,
@@ -98,11 +99,7 @@ $(function(){
           },
           sTel: {
         	  required : true,
-              regx : /^[0-9]{11,12}$/
-          },
-          sEmail: {
-              required : true,
-              regx : /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+            regx : /^[0-9]{11,12}$/
           },
           sPostalCode: {
         	  required : true
@@ -113,61 +110,52 @@ $(function(){
           sAddress2: {
         	  required : true
           },
-          sShopName: {
-        	  required : true
+          github: {
+        	  maxlength : 20
           },
-          sNumber: {
+          agreechk: {
         	  required : true
           },
       },
       
       //규칙체크 실패시 출력될 메시지
       messages : {
-          sId: {
+          email: {
                 required : "필수입력사항입니다.",
-                regx : "아이디는 문자 6~20자입니다"
+                regx : "이메일형식을 맞춰주세요",
+                remote : "존재하는 아이디입니다"
             },
-            sPw: {
+            pw: {
                 required : "필수입력사항입니다.",
                 regx : "비밀번호는 문자,숫자,특수문자 포함 6~20자입니다"
             },
-          sPwcheck: {
+            pw2: {
                 required : "필수입력사항입니다.",
                 equalTo : "비밀번호가 맞지 않습니다."
             },
-          sName: {
+            name: {
                 required : "필수입력사항입니다.",
                 regx : "이름은 한글,영어 1~30자입니다"
             },
-           sTel: {
+            tel: {
               required : "필수입력사항입니다.",
                 regx : "-없이 숫자11~12자리입니다"
             },
-            sEmail: {
+            address: {
               required : "필수입력사항입니다.",
-              regx : "이메일 형식을 확인하세요."
             },
-            sPostalCode: {
-           	  required : "필수입력사항입니다."
+            github: {
+              maxlength : "최대 {0}글자 이하입니다."
             },
-            sAddress1: {
-              required : "필수입력사항입니다"
+            agreechk: {
+              required : "개인정보처리방침에 동의해야합니다"
             },
-            sAddress2: {
-              required : "필수입력사항입니다."
-            },
-            sShopName: {
-              required : "필수입력사항입니다."
-            },
-            sNumber: {
-              required : "필수입력사항입니다."
-            }
         }
   });
 })
 </script>
 <body>
-<form name ="signupSellerForm" id="signupSellerForm" action="signupSeller.do">
+<form name ="signupSellerForm" action="signupSeller.do">
 	<h3>회원가입</h3>
 	<hr>
 		<table>
@@ -176,7 +164,7 @@ $(function(){
 			</tr>
 			<tr>
 				<td> <input type="text" name="textid" value="아이디*" readonly="readonly" style="text-align: center" onkeydown="inputIdChk()"></td>
-				<td> <input type="text" name="sId" id="sId" placeholder="아이디를 입력하세요">
+				<td> <input type="text" name="sId" id="sId">
 				<input type="button" name="Idcheck" value="중복체크" onclick="opensIdChk(this.form.sId.value)">
 				<input type="hidden" name ="idDuplication" value="idUncheck">
 				</td>
@@ -184,20 +172,20 @@ $(function(){
 			</tr>		
 			<tr>
 				<td> <input type="text" name="textpw" value="비밀번호*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="password" name="sPw" id="sPw" placeholder="비밀번호를 입력하세요"> </td>
+				<td> <input type="password" name="sPassword" id="sPassword"> </td>
 			</tr>		
 			<tr>
 				<td> <input type="text" name="textpwc" value="비밀번호 확인*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="password" name="sPwcheck" id="sPwcheck" placeholder="비밀번호 확인"> </td>
+				<td> <input type="password" name="sPWcheck" id="sPWcheck"> </td>
 			</tr>		
 			<tr>
 				<td> <input type="text" name="textname" value="이름*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="sName" id="sName" placeholder="이름을 입력하세요"> </td>
+				<td> <input type="text" name="sName" id="sName"> </td>
 				
 			</tr>		
 			<tr>
 				<td> <input type="text" name="texttel" value="전화번호*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="sTel" id="sTel" placeholder="-를 생략하고 입력"> </td>
+				<td> <input type="text" name="sTel" id="sTel"> </td>
 			</tr>		
 			<tr>
 				<td> <input type="text" name="textbirth" value="생년월일*" readonly="readonly" style="text-align: center"></td>
@@ -222,29 +210,36 @@ $(function(){
 					</td>
 			<tr>
 				<td> <input type="text" name="textemail" value="이메일*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="sEmail" id="sEmail" placeholder="이메일을 입력하세요"> </td>
+				<td> <input type="text" name="sEmail" id="sEmail">
+				<select>
+					 	<option value="@naver.com">@naver.com</option>
+					 	<option value="@gmail.com">@gmail.com</option>
+					 	<option value="@daum.net">@daum.net</option>
+					 </select>
+				</td>
 			</tr>		
 			<tr>
 				<td> <input type="text" name="textnickname" value="주소*" readonly="readonly" style="text-align: center"></td>
 				
-				<td><input type="text" name = "sPostalCode" id="sPostalCode" placeholder="우편번호" readonly="readonly">
+				<td><input type="text" name = "sPostalCode" id="sPostalCode" placeholder="우편번호">
 					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" name = "sAddress1" id="sAddress1" placeholder="도로명주소" readonly="readonly">
+					<input type="text" name = "sAddress1" id="sAddress1" placeholder="도로명주소">
 					<span id="guide" style="color:#999;display:none"></span>
 					<input type="text" name = "sAddress2" id="sAddress2" placeholder="상세주소">
 				</td>
 			</tr>
 			<tr>
 				<td> <input type="text" name="textShopname" value="상점이름*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="sShopName" id="sShopName" placeholder="상점이름을 입력하세요"> </td>
+				<td> <input type="text" name="sShopName" id="sShopName"> </td>
 			</tr>		
 			<tr>
 				<td> <input type="text" name="textRegistNum" value="사업자 등록 번호 *" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="sNumber" id="sNumber" size="16" placeholder="사업자등록번호 10자리를 입력하세요(-생략)" > </td>
+				<td> <input type="text" name="sNumber" id="sNumber" > </td>
 			</tr>		
 			
 		</table>
 		<input type="submit" value="회원가입">
 	</form>
+
 </body>
 </html>

@@ -8,11 +8,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+public class Dao_cIdCheck {
 
-public class Dao_IdCheck {
 	DataSource dataSource;
 	
-	public Dao_IdCheck() {
+	public Dao_cIdCheck() {
 		// TODO Auto-generated constructor stub
 		try {
 			Context context = new InitialContext();
@@ -25,22 +25,23 @@ public class Dao_IdCheck {
 	
 	}
 	
-	public int IdcheckSeller(String sId, int sIdchk) {
+	
+public int IdcheckCustomer(String cId, int cIdchk) {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+		
 		try {
 			connection = dataSource.getConnection();
-		
-			String query = "select sId from seller where sId= '" + sId + "'";
+			
+			String query = "select cId from customer where cId= '" + cId + "'";
 			
 			preparedStatement = connection.prepareStatement(query);
 			ResultSet resultSet = preparedStatement.executeQuery();
-			sIdchk = 0;
+			cIdchk = 0;
 			
 			while (resultSet.next()){
-					sIdchk = 1;	//아이디 중복
+				cIdchk = 1;	//아이디 중복
 			}
 			
 		} catch (Exception e) {
@@ -53,9 +54,7 @@ public class Dao_IdCheck {
 				e.printStackTrace();
 			}
 		}
-		return sIdchk;
+		return cIdchk;
 	}
-	
-	
 	
 }

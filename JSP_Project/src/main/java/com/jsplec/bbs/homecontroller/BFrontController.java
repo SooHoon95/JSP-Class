@@ -1,10 +1,11 @@
 package com.jsplec.bbs.Homecontroller;
 
+import com.jsplec.bbs.command.CIdCheckCommand;
 import com.jsplec.bbs.command.Command;
+import com.jsplec.bbs.command.SIdCheckCommand;
 import com.jsplec.bbs.command.SignUpCustomerCommand;
 import com.jsplec.bbs.command.SignUpSellerCommand;
-import com.jsplec.bbs.command.signupIdCheckCommand;
-import com.jsplec.bbs.command.intCommand;
+//import com.jsplec.bbs.command.loginactionCommand;
 
 import java.io.IOException;
 
@@ -66,11 +67,6 @@ public class BFrontController extends HttpServlet {
 		
 		String viewPage = null;
 		Command command = null;
-		intCommand intcommand = null;
-		
-		System.out.println(uri);
-		System.out.println(conPath);
-		System.out.println(com);
 		
 		switch(com) {
 		
@@ -88,31 +84,63 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response, session);
 			viewPage = "signupComplete.jsp";
 			break;
+		//판매자 회원가입	
 		case("/signupSeller.do"):
 			command = new SignUpSellerCommand();
 			command.execute(request, response, session);
 			viewPage = "signupComplete.jsp";
 			break;
-		case("/signupIdCheck.do"):
-			command = new signupIdCheckCommand();
+		/*
+		 * 판매자 아이디 중복체크
+		 */
+		case("/signupsIdCheck.do"):
+			command = new SIdCheckCommand();
 			command.execute(request, response, session);
-			System.out.println(session.getAttribute("sIdkchk"));
-			if(session.getAttribute("sIdchk") == "true") {
-				String sIdchkResult = "이미 사용중인 아이디 입니다. 다른 아이디를 입력해주세요";
-				session.setAttribute("sIdchkResult", sIdchkResult);
-			}else {
-				String sIdchkResult = "아이디를 사용할 수 있습니다.";
-				session.setAttribute("sIdchkResult", sIdchkResult);
+			System.out.println("컨트롤러" + session.getAttribute("sIdchk"));
+			String sIdchkMessage;
+			if((int)session.getAttribute("sIdchk") == 1) {
+				sIdchkMessage = "이미 사용중인 아이디 입니다. 다른 아이디를 입력해주세요";
+				session.setAttribute("sIdchkMessage", sIdchkMessage);
+				}else {
+				sIdchkMessage = "아이디를 사용할 수 있습니다. 계속해서 진행해 주세요.";
+				session.setAttribute("sIdchkMessage", sIdchkMessage);
 			}
 			request.setAttribute("sIdchk", session.getAttribute("sIdkchk"));
-			request.setAttribute("sIdchkResult", session.getAttribute("sIdchkResult"));
-			System.out.println(session.getAttribute("sIdchkResult"));
-			viewPage= "signupSeller.jsp"; 
+			request.setAttribute("sIdchkMessage", session.getAttribute("sIdchkMessage"));
+			request.setAttribute("sId", session.getAttribute("sId"));
+//			System.out.println(request.getAttribute("sIdchkMessage"));
+			System.out.print(request.getAttribute("sId"));
+			viewPage= "sIdCheckAlert.jsp";
+			break;
+		/*
+		 * 구매자 아이디 중복체크
+		 */
+		case("/signupcIdCheck.do"):
+			command = new CIdCheckCommand();
+			command.execute(request, response, session);
+			System.out.println(session.getAttribute("cIdchk"));
+			String cIdchkMessage;
+			if((int)session.getAttribute("cIdchk") == 1) {
+				 cIdchkMessage = "이미 사용중인 아이디 입니다. 다른 아이디를 입력해주세요";
+				session.setAttribute("cIdchkMessage", cIdchkMessage);
+			}else {
+				 cIdchkMessage = "아이디를 사용할 수 있습니다. 계속해서 진행해 주세요.";
+				session.setAttribute("cIdchkMessage", cIdchkMessage);
+			}
+			request.setAttribute("cIdchk", session.getAttribute("cIdkchk"));
+			request.setAttribute("cIdchkMessage", session.getAttribute("cIdchkMessage"));
+			request.setAttribute("cId", session.getAttribute("cId"));
+			System.out.println(request.getAttribute("cIdchkMessage"));
+			System.out.print(request.getAttribute("cId"));
+			viewPage= "cIdCheckAlert.jsp";
 			break;
 			
 			
-			
-			
+//		case("/loginaction.do"):
+//			command = new loginactionCommand();
+//			command.execute(request, response, session);
+//			viewPage = "main.jsp";
+//			
 			}
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage); 
 			dispatcher.forward(request, response);

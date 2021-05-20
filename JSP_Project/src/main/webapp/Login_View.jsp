@@ -43,12 +43,16 @@ function checkOnlyOne(element) {
 	  
 	  element.checked = true;
 	}
+	
+function name() {
+	
+}
 	</script>
 	
 <body>
 
 	<h3>로그인</h3>
-	<form action="main.jsp" method="post">
+	<form action="loginaction.do" method="post">
 		<table>
 			<tr>
 				<td style="text-align: center;"> <input type="text" name="id" size="20" > </td>
