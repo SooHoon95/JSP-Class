@@ -12,8 +12,8 @@ public class SIdCheckCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
 		String sId = request.getParameter("sId");
-		int sIdchk = 0 ;
 		String hidden = request.getParameter("idDuplication");
+		int sIdchk = 0 ;
 		
 		System.out.println(sId);
 		Dao_IdCheck dao = new Dao_IdCheck();

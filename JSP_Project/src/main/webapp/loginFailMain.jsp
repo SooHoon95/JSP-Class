@@ -64,6 +64,13 @@ function name() {
 				<td style="text-align: center;"> <input type="password" name="loginPw" size="20" > </td>
 			</tr>
 			<tr>
+				<td colspan="2" >
+				<font color="red" size="2pt">
+					<i>가입되지 않은 아이디이거나, 잘못된 비밀번호입니다.</i>
+				</font>
+				</td>
+			</tr>
+			<tr>
 				<td> <input type="checkbox" name="userType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)'> 구매회원 
 					 <input type="checkbox" name="userType" value="판매회원" onclick='checkOnlyOne(this)'> 판매회원 </td>
 				<td>

@@ -149,7 +149,13 @@ public class BFrontController extends HttpServlet {
 		case("/loginaction.do"):
 			command = new loginActionCommand();
 			command.execute(request, response, session);
-			viewPage = "main.jsp";
+			
+			//Command에서 처리한 결과에 따라서 다른 viewPage로 연결
+			if ((int)session.getAttribute("logingChkResult") == 0) {
+				session.invalidate();
+				viewPage = "loginFailMain.jsp";
+				
+			}
 			
 			}
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage); 

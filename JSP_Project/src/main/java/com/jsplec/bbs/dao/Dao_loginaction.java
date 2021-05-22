@@ -24,7 +24,7 @@ DataSource dataSource;
 	
 	}
 	
-	public void customerLoginAction(String loginId,  String loginPw) {
+	public int customerLoginAction(String loginId,  String loginPw, int loginChk) {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -32,13 +32,15 @@ DataSource dataSource;
 		
 		try {
 			connection = dataSource.getConnection();
-		
+			
 			String query = "select (cId, cPw) from customer where cId= '" + loginId + "'";
 			
 			preparedStatement = connection.prepareStatement(query);
 			ResultSet resultSet = preparedStatement.executeQuery();
-			
+			loginChk = 0; // DB확인 결과 아이디 없음
+
 			while (resultSet.next()){
+				loginChk = 1;
 			}
 			
 		} catch (Exception e) {
@@ -51,7 +53,40 @@ DataSource dataSource;
 				e.printStackTrace();
 			}
 		}
+		return loginChk;
+	}
+	
+	
+	public int sellerLoginAction(String loginId,  String loginPw, int loginChk) {
 		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select (sId, sPw) from seller where sId= '" + loginId + "'";
+			
+			preparedStatement = connection.prepareStatement(query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			loginChk = 0; // DB확인 결과 아이디 없음
+			
+			while (resultSet.next()){
+				loginChk = 1;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (preparedStatement != null) preparedStatement.close();
+				if (connection!= null) connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return loginChk;
 	}
 	
 	
