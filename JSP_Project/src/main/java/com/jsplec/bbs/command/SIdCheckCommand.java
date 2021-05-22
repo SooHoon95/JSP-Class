@@ -13,14 +13,15 @@ public class SIdCheckCommand implements Command {
 		// TODO Auto-generated method stub
 		String sId = request.getParameter("sId");
 		int sIdchk = 0 ;
+		String hidden = request.getParameter("idDuplication");
 		
 		System.out.println(sId);
 		Dao_IdCheck dao = new Dao_IdCheck();
 		
 		int sIdchkResult = dao.IdcheckSeller(sId, sIdchk);
-		System.out.println("판매자커맨다" + sIdchkResult);
 		session.setAttribute("sIdchk", sIdchkResult);
 		session.setAttribute("sId", sId);
+		session.setAttribute("sHIDDEN", hidden);
 		
 	}
 

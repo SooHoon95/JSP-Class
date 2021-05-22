@@ -20,7 +20,7 @@ public class Dao_signUpCustomer {
 		}
 	}
 	
-	public void writeCustomer(String cId, String cPassword, String cName, String cBirth, String cTel, String cAddress1, String cAddress2, String cEmail, String cNickname, String cPostalCode)	{
+	public void writeCustomer(String cId, String cPw, String cName, String cBirth, String cTel, String cAddress1, String cAddress2, String cEmail, String cPostalCode)	{
 		//java.sql
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -28,21 +28,20 @@ public class Dao_signUpCustomer {
 		try {
 			connection = dataSource.getConnection();
 		
-			String A = "insert into customer (cId, cPassword, cName, cBirth, cTel, cAddress1, cAddress2, cEmail, cNickname, cSignInDate, cPostalCode";
-			String B = ") values(?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?)";
+			String A = "insert into customer (cId, cPw, cName, cBirth, cTel, cAddress1, cAddress2, cEmail, cPostalCode, cJoinDate";
+			String B = ") values(?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
 			
 			preparedStatement = connection.prepareStatement(A+B);
 			
 			preparedStatement.setString(1, cId);
-			preparedStatement.setString(2, cPassword);
+			preparedStatement.setString(2, cPw);
 			preparedStatement.setString(3, cName);
 			preparedStatement.setString(4, cBirth);
 			preparedStatement.setString(5, cTel);
 			preparedStatement.setString(6, cAddress1);
 			preparedStatement.setString(7, cAddress2);
 			preparedStatement.setString(8, cEmail);
-			preparedStatement.setString(9, cNickname);
-			preparedStatement.setString(10, cPostalCode);
+			preparedStatement.setString(9, cPostalCode);
 			preparedStatement.executeUpdate();
 			
 		} catch (Exception e) {

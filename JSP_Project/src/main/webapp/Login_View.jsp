@@ -55,13 +55,13 @@ function name() {
 	<form action="loginaction.do" method="post">
 		<table>
 			<tr>
-				<td style="text-align: center;"> <input type="text" name="id" size="20" > </td>
+				<td style="text-align: center;"> <input type="text" name="loginId" id="loginId" size="20" > </td>
 				<td colspan="2" rowspan="2">
 				<input type="submit" value="login" style="width: 70pt; height: 45pt;"></td>
 			</tr>
 			
 			<tr>
-				<td style="text-align: center;"> <input type="password" name="pw" size="20" > </td>
+				<td style="text-align: center;"> <input type="password" name="loginPw" size="20" > </td>
 			</tr>
 			<tr>
 				<td> <input type="checkbox" name="userType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)'> 구매회원 

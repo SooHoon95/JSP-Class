@@ -5,7 +5,7 @@ import com.jsplec.bbs.command.Command;
 import com.jsplec.bbs.command.SIdCheckCommand;
 import com.jsplec.bbs.command.SignUpCustomerCommand;
 import com.jsplec.bbs.command.SignUpSellerCommand;
-//import com.jsplec.bbs.command.loginactionCommand;
+import com.jsplec.bbs.command.loginActionCommand;
 
 import java.io.IOException;
 
@@ -97,6 +97,8 @@ public class BFrontController extends HttpServlet {
 			command = new SIdCheckCommand();
 			command.execute(request, response, session);
 			System.out.println("컨트롤러" + session.getAttribute("sIdchk"));
+			System.out.println(session.getAttribute("sHIDDEN"));
+			
 			String sIdchkMessage;
 			if((int)session.getAttribute("sIdchk") == 1) {
 				sIdchkMessage = "이미 사용중인 아이디 입니다. 다른 아이디를 입력해주세요";
@@ -108,8 +110,11 @@ public class BFrontController extends HttpServlet {
 			request.setAttribute("sIdchk", session.getAttribute("sIdkchk"));
 			request.setAttribute("sIdchkMessage", session.getAttribute("sIdchkMessage"));
 			request.setAttribute("sId", session.getAttribute("sId"));
+			request.setAttribute("sHIDDEN", session.getAttribute("sHIDDEN"));
+			
 //			System.out.println(request.getAttribute("sIdchkMessage"));
-			System.out.print(request.getAttribute("sId"));
+//			System.out.print(request.getAttribute("sId"));
+			System.out.println(request.getAttribute("sHIDDEN"));
 			viewPage= "sIdCheckAlert.jsp";
 			break;
 		/*
@@ -119,6 +124,7 @@ public class BFrontController extends HttpServlet {
 			command = new CIdCheckCommand();
 			command.execute(request, response, session);
 			System.out.println(session.getAttribute("cIdchk"));
+			
 			String cIdchkMessage;
 			if((int)session.getAttribute("cIdchk") == 1) {
 				 cIdchkMessage = "이미 사용중인 아이디 입니다. 다른 아이디를 입력해주세요";
@@ -130,17 +136,21 @@ public class BFrontController extends HttpServlet {
 			request.setAttribute("cIdchk", session.getAttribute("cIdkchk"));
 			request.setAttribute("cIdchkMessage", session.getAttribute("cIdchkMessage"));
 			request.setAttribute("cId", session.getAttribute("cId"));
-			System.out.println(request.getAttribute("cIdchkMessage"));
-			System.out.print(request.getAttribute("cId"));
+			request.setAttribute("cHIDDEN", session.getAttribute("cHIDDEN"));
+			
+//			System.out.println(request.getAttribute("cIdchkMessage"));
+//			System.out.print(request.getAttribute("cId"));
+			System.out.print(request.getAttribute("sHIDDEN"));
 			viewPage= "cIdCheckAlert.jsp";
 			break;
+		/*
+		 * 로그인 액션 처리
+		 */
+		case("/loginaction.do"):
+			command = new loginActionCommand();
+			command.execute(request, response, session);
+			viewPage = "main.jsp";
 			
-			
-//		case("/loginaction.do"):
-//			command = new loginactionCommand();
-//			command.execute(request, response, session);
-//			viewPage = "main.jsp";
-//			
 			}
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage); 
 			dispatcher.forward(request, response);

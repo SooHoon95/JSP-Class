@@ -13,16 +13,15 @@ public class CIdCheckCommand implements Command {
 		// TODO Auto-generated method stub
 		String cId = request.getParameter("cId");
 		int cIdchk = 0 ;
+		String hidden = request.getParameter("idDuplication");
 		
 		System.out.println(cId);
 		Dao_cIdCheck dao = new Dao_cIdCheck();
 		
 		int cIdchkResult = dao.IdcheckCustomer(cId, cIdchk);
-		
-		System.out.println("고객커맨드" + cIdchkResult);
-		
 		session.setAttribute("cIdchk", cIdchkResult);
 		session.setAttribute("cId", cId);
+		session.setAttribute("cHIDDEN", hidden);
 		
 	}
 

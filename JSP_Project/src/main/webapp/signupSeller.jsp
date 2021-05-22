@@ -39,25 +39,6 @@
         }).open();
     }
 </script>
-<!-- 정규식체크 -->
-<script type="text/javascript">
-	function checkValue() {
-		if (form.idDuplication.value != "idcheck"){
-			alert('아이디 중복체크를 해주세요.');
-			return false;
-		}
-	}
-
-</script>
-<script type="text/javascript">
-	function inputsIdChk() {
-		doucument.signupSellerForm.idDuplication.value ="idUncheck";
-	}
-	function opensIdChk(sId) {
-		var url = 'sIdCheck.jsp?sId='+ sId
-		window.open(url, 'chkFrom', 'width=500, height=300, resizable=no, scrollbars=no');
-	}
-</script>
 <!-- Jquery의 Validate를 이용한 정규식 및 로그인 확인 -->
 <script>
 $(function(){
@@ -134,7 +115,7 @@ $(function(){
       messages : {
           sId: {
                 required : "필수입력사항입니다.",
-                regx : "아이디는 문자 6~20자입니다"
+                regx : "아이디는 영문 소문자, 숫자 포함 6~20자입니다"
             },
             sPw: {
                 required : "필수입력사항입니다.",
@@ -170,19 +151,26 @@ $(function(){
             },
             sNumber: {
               required : "필수입력사항입니다."
-            },
-            idDuplication:{
-          	  equalTo : "아이디 중복체크가 되지않았습니다."
             }
         }
   });
 })
 </script>
+
+<script type="text/javascript">
+	function inputsIdChk() {
+		document.signupSellerForm.idDuplication.value ="idUncheck";
+	}
+	function opensIdChk(sId) {
+		var url = 'sIdCheck.jsp?sId='+ sId
+		window.open(url, 'chkFrom', 'width=500, height=300, resizable=no, scrollbars=no');
+	}
+</script>
+
 <body>
-<form name ="signupSellerForm" id="signupSellerForm" action="signupSeller.do" 
-onsubmit="checkValue()">
+<form name ="signupSellerForm" id="signupSellerForm" action="signupSeller.do" >
 	<h3>회원가입</h3>
-	<hr>
+	<hr style="width: 80%;">
 		<table>
 			<tr>
 				<td> <h4>판매 회원 기본정보</h4> </td>

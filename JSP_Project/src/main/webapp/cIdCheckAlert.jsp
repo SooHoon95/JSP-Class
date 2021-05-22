@@ -10,11 +10,12 @@
 
 
 <script type="text/javascript">
-
+	
+	var idDuplication = '${sHIDDEN}';
 	var cId = '${cId}'
 	var cIdchk = '${cIdchk}';
 	var cIdchkMessage = '${cIdchkMessage}';
-	var returnUrl = 'cIdCheck.jsp?cId='+cId;
+	var returnUrl = 'cIdCheck.jsp?cId='+ cId + '&idDuplication' + idDuplication;
 	
 	alert(cIdchkMessage);
 	document.location.href =  returnUrl;

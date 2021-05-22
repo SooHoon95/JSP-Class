@@ -8,13 +8,12 @@
 </head>
 <body>
 
-
 <script type="text/javascript">
-
-	var sId = '${sId}'
+	var idDuplication = '${sHIDDEN}';
+	var sId = '${sId}';
 	var sIdchk = '${sIdchk}';
 	var sIdchkMessage = '${sIdchkMessage}';
-	var returnUrl = 'sIdCheck.jsp?sId='+sId;
+	var returnUrl = 'sIdCheck.jsp?sId='+ sId + '&idDuplication=' + idDuplication;
 	
 	alert(sIdchkMessage);
 	document.location.href =  returnUrl;
