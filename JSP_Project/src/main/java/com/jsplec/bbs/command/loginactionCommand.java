@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jsplec.bbs.dao.Dao_loginAction;
+import com.jsplec.bbs.share.share;
 
 public class loginActionCommand implements Command {
 
@@ -20,27 +21,29 @@ public class loginActionCommand implements Command {
 		System.out.println(userType);
 		
 		try {
-			if(userType == "구매회원") {
+			if(userType.equals("구매회원")) {
 				userType = "customer";
 				Dao_loginAction dao = new Dao_loginAction();
 				loginChkResult = dao.customerLoginAction(loginId, loginPw, loginChk);
 				
+				System.out.println(loginChkResult);
+				System.out.println(share.userId + "\n" + share.userPw);
+				
 				session.setAttribute("loginChkResult", loginChkResult); // 1 = 해당 아이디 존재 ,0 = 존재하지 않음
-				session.setAttribute("LOGINID", loginId);
-				session.setAttribute("LOGINPW", loginPw);
 				session.setAttribute("USERTYPE", userType);
-			}else if(userType =="판매회원") {
+				
+			}else if(userType.equals("판매회원")) {
 				userType = "seller";
 				Dao_loginAction dao = new Dao_loginAction();
 				loginChkResult = dao.sellerLoginAction(loginId, loginPw, loginChk);
 				
+				System.out.println(loginChkResult);
+				System.out.println(share.userId + "\n" + share.userPw);
+				
 				session.setAttribute("loginChkResult", loginChkResult);
-				session.setAttribute("LOGINID", loginId);
-				session.setAttribute("LOGINPW", loginPw);
 				session.setAttribute("USERTYPE", userType);
 				
 			}
-			System.out.println(loginChkResult);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

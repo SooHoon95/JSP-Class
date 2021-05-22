@@ -7,17 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="Test2.jsp">
-<%
 
-	String test = "Test";
-
-	request.setAttribute("TEST", test);
-
-
-%>
-<input type="submit" value="Test">
-
-</form>
 </body>
 </html>

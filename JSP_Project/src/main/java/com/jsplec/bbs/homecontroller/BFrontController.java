@@ -6,6 +6,7 @@ import com.jsplec.bbs.command.SIdCheckCommand;
 import com.jsplec.bbs.command.SignUpCustomerCommand;
 import com.jsplec.bbs.command.SignUpSellerCommand;
 import com.jsplec.bbs.command.loginActionCommand;
+import com.jsplec.bbs.share.share;
 
 import java.io.IOException;
 
@@ -23,7 +24,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet("*.do")
 public class BFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -151,10 +151,18 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response, session);
 			
 			//Command에서 처리한 결과에 따라서 다른 viewPage로 연결
-			if ((int)session.getAttribute("logingChkResult") == 0) {
+			if ((int)session.getAttribute("loginChkResult") == 0) {
 				session.invalidate();
 				viewPage = "loginFailMain.jsp";
-				
+//				viewPage = "sellerLoginFailMain.jsp";
+				// 밧데리없어서 여기까지 함 
+				// 두개는 다 똑같은데 체크박스 체크값만 다르다. userType if문으로 나눠서 보낼 것.
+			}else {
+				if(session.getAttribute("USERTYPE").equals("customer")) {
+					viewPage = "main.jsp";
+				}else {
+					viewPage = "sellerStore.jsp";
+				}
 			}
 			
 			}

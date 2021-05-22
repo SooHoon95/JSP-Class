@@ -8,6 +8,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.jsplec.bbs.share.share;
+
 public class Dao_loginAction {
 DataSource dataSource;
 	
@@ -28,27 +30,31 @@ DataSource dataSource;
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select (cId, cPw) from customer where cId= '" + loginId + "'";
+			String query = "select cId, cPw from customer where cId= '" + loginId + "' and cPw= '" + loginPw + "'";
 			
 			preparedStatement = connection.prepareStatement(query);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
+			
 			loginChk = 0; // DB확인 결과 아이디 없음
 
 			while (resultSet.next()){
-				loginChk = 1;
+				loginChk = 1;	// 아이디 있음
+				share.userId = loginId;
+				share.userPw = loginPw;
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				if (preparedStatement != null) preparedStatement.close();
 				if (connection!= null) connection.close();
+				if (resultSet != null) resultSet.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -61,19 +67,22 @@ DataSource dataSource;
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
+		ResultSet resultSet = null;
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select (sId, sPw) from seller where sId= '" + loginId + "'";
+			String query = "select sId, sPw from seller where sId= '" + loginId + "' and sPw= '" + loginPw + "'";
 			
 			preparedStatement = connection.prepareStatement(query);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			loginChk = 0; // DB확인 결과 아이디 없음
 			
 			while (resultSet.next()){
 				loginChk = 1;
+				share.userId = loginId;
+				share.userPw = loginPw;
+
 			}
 			
 		} catch (Exception e) {
@@ -82,6 +91,7 @@ DataSource dataSource;
 			try {
 				if (preparedStatement != null) preparedStatement.close();
 				if (connection!= null) connection.close();
+				if (resultSet != null) resultSet.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
