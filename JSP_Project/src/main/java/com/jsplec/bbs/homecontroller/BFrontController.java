@@ -5,6 +5,7 @@ import com.jsplec.bbs.command.Command;
 import com.jsplec.bbs.command.SIdCheckCommand;
 import com.jsplec.bbs.command.SignUpCustomerCommand;
 import com.jsplec.bbs.command.SignUpSellerCommand;
+import com.jsplec.bbs.command.findIdActionCommand;
 import com.jsplec.bbs.command.loginActionCommand;
 import com.jsplec.bbs.share.share;
 
@@ -165,10 +166,36 @@ public class BFrontController extends HttpServlet {
 				}
 			}
 			
-			}
+			/*
+			 * 아이디찾기
+			 */
+		case("/findId.do"):
+			command = new findIdActionCommand();
+			command.execute(request, response, session);
+			
+			request.setAttribute("findmsg", (String)session.getAttribute("findmsg"));
+			
+			if((int)session.getAttribute("findchk") == 0) {
+				viewPage = "failFidnId.jsp";
+			}else {
+				viewPage = "successFindId.jsp";
+			}//
+			System.out.println(session.getAttribute("findmsg"));
+			/*
+			 * 비밀번호찾기
+			 */
+		case("/findPw.do"):
+			command = new findPwActionCommand();
+			command.execute(request, response, session);
+			
+			
+			
+			
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage); 
 			dispatcher.forward(request, response);
 				
 		}
+	}
 	
 }//============

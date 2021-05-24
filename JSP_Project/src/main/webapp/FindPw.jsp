@@ -32,27 +32,43 @@ function checkOnlyOne(element) {
 </script>
 
 <body>
+<jsp:include page="header.jsp"></jsp:include>
+<br>
 <h4>비밀번호 찾기</h4>
 <hr>
-	<form action="findId.do">
-		<table>
-			<tr>
-			<td> <h5> 비밀번호 찾기 </h5></td>
-			</tr>
-			<tr>
-				<td> <input type="text" name="findingName" value="아이디를 입력하세요" style="text-align: left"></td>
-				<td colspan="2"  rowspan="2">
-				<input type="submit" value="login" style="width: 70pt; height: 45pt;"></td>
-			</tr>
-			<tr>
-				<td> <input type="checkbox" name="userType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)'> 구매회원 
-					 <input type="checkbox" name="userType" value="판매회원" onclick='checkOnlyOne(this)'> 판매회원 </td>
-			</tr>
-		</table>
+<center>
+	<form action="findPw.do">
+			<h5 style="text-align: center;"> 비밀번호 찾기 </h5>
+			<br>
+				<p style="line-height: 10pt">
+				<input type="text" name="inputId" id="inputId" placeholder="아이디를 입력하세요" size="50" style="text-align: left; height: 15pt"></p>
+				<br>
+				<p style="line-height: 10pt">
+				<input type="text" name="inputName" id="inputId" placeholder="이름을 입력하세요" size="50" style="text-align: left; height: 15pt"></P>
+				<br>
+				<p style="line-height: 10pt">
+				<input type="text" name="inputEmail" id="inputId" placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt"></p>
+				<br>
+				<input type="submit" value="비밀번호찾기" style="width: 290pt; height: 18pt;">
+				<br>
+				<br>
+				
+				<div style="font-size: 9pt">
+					<p style="line-height: 10pt">	
+						 <input type="checkbox" name="findUserType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)' "> 구매회원
+						 &nbsp;&nbsp;&nbsp;
+						 <input type="checkbox" name="findUserType" value="판매회원" onclick='checkOnlyOne(this)' style="font-size: 9pt;"> 판매회원
+				 	</p>
+				 	<br>
+				</div>
+
 			아이디가 기억나지 않으세요?
 			<input type="button" name="Idcheck" value="아이디 찾기" onclick='return findId(this.form);'>
 		
 	</form>
+</center>
+<br>
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

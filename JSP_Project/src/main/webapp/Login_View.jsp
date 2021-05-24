@@ -50,13 +50,19 @@ function name() {
 	</script>
 	
 <body>
-
+ <jsp:include page="header.jsp"></jsp:include>
+ <br>
+	<div>
+	<center>
 	<h3>로그인</h3>
+	<br>
+	
 	<form action="loginaction.do" method="post">
 		<table>
 			<tr>
 				<td style="text-align: center;"> <input type="text" name="loginId" id="loginId" size="20" > </td>
 				<td colspan="2" rowspan="2">
+				&nbsp;&nbsp;
 				<input type="submit" value="login" style="width: 70pt; height: 45pt;"></td>
 			</tr>
 			
@@ -64,11 +70,15 @@ function name() {
 				<td style="text-align: center;"> <input type="password" name="loginPw" size="20" > </td>
 			</tr>
 			<tr>
-				<td> <input type="checkbox" name="userType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)'> 구매회원 
-					 <input type="checkbox" name="userType" value="판매회원" onclick='checkOnlyOne(this)'> 판매회원 </td>
+				<td style="font-size: 9pt;">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="userType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)'> 구매회원 
+				&nbsp;&nbsp;
+				<input type="checkbox" name="userType" value="판매회원" onclick='checkOnlyOne(this)'> 판매회원 </td>
 				<td>
-				<a href = "FindId.jsp">아이디</a> / 
-				<a href = "FindPw.jsp">비밀번호</a> 찾기
+				<a href = "FindId.jsp"><i style="font-size: 3pt;">아이디</i></a> <i style="font-size: 3pt;">/</i> 
+				<a href = "FindPw.jsp"><i style="font-size: 3pt;">비밀번호 찾기</i></a>
+				</td>
 			</tr>
 		</table>
 			<br>
@@ -80,5 +90,8 @@ function name() {
 	<form action="AgreementTerms.jsp" method="post">
 		<input type="submit" value="회원가입">
 	</form>
+	</center>
+	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

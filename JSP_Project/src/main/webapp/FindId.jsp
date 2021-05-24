@@ -13,7 +13,7 @@
 function checkOnlyOne(element) {
 	  
 	  const checkboxes 
-	      = document.getElementsByName("animal");
+	      = document.getElementsByName("userType");
 	  
 	  checkboxes.forEach((cb) => {
 	    cb.checked = false;
@@ -43,31 +43,40 @@ function checkOnlyOne(element) {
 
 
 <body>
-<h4>아이디 찾기</h4>
-<hr>
-	<form action="findId.do">
-		<table>
-			<tr>
-			<td> <h5>회원아이디 찾기 </h5></td>
-			</tr>
-			<tr>
-				<td> <input type="text" name="findingName" value="이름을 입력하세요" style="text-align: left"></td>
-				<td colspan="2" rowspan="2">
-				<input type="submit" value="login" style="width: 70pt; height: 45pt;"></td>
-			</tr>
-			<tr>
-				<td> <input type="text" name="findingEmail" value="이메일을 입력하세요" style="text-align: left"></td>				
-			</tr>
-			<tr>
-				<td> <input type="checkbox" name="userType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)'> 구매회원 
-					 <input type="checkbox" name="userType" value="판매회원" onclick='checkOnlyOne(this)'> 판매회원 </td>
-				<td>
-			</tr>
-		</table>
-			<input type="button" name="Idcheck" value="비밀번호찾기" onclick=" return findPw(this.form);">
-			<input type="button" name="Idcheck" value="로그인하기" onclick='return backLogin(this.form);'>
-		
-	</form>
+<jsp:include page="header.jsp"></jsp:include>
+<br>
+	<h4>아이디 찾기</h4>
+	<hr>
+	<center>
+		<form action="findId.do" method="post">
+					<h5 style="text-align: center;">회원아이디 찾기</h5>
+					<br>
+					<p style="line-height: 10pt"><input type="text" name="findName" id="findName" 
+						placeholder="이름을 입력하세요"  size="50" style="text-align: left; height: 15pt"></p>
+					<br>
+					<p style="line-height: 10pt"><input type="text" name="findEmail" id="findEmail"
+						placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt;"></p>
+					<br>
+					<input type="submit" value="아이디 찾기" style="width: 290pt; height: 18pt;">
+					<br>
+					<br>
+						<div style="font-size: 9pt">
+					<p style="line-height: 10pt">	
+						 <input type="checkbox" name="findUserType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)' "> 구매회원
+						 &nbsp;&nbsp;&nbsp;
+						 <input type="checkbox" name="findUserType" value="판매회원" onclick='checkOnlyOne(this)' style="font-size: 9pt;"> 판매회원
+				 	</p>
+						 </div>
+					<br>
+						 
+				<input type="button" name="Idcheck" value="비밀번호찾기" onclick=" return findPw(this.form);" style="width: 90pt">
+				&nbsp;&nbsp;
+				<input type="button" name="Idcheck" value="로그인하기" onclick='return backLogin(this.form);' style="width: 90pt">
+			
+		</form>
+	</center>
+	<br>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>
