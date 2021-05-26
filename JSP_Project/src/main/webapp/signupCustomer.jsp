@@ -76,8 +76,6 @@ $(function(){
 	          } else {
 	              return false;
 	          }
-        	  
-          
       },
       //규칙
       rules: {
@@ -168,6 +166,7 @@ $(function(){
 
 
 <body>
+<jsp:include page="header.jsp"></jsp:include>
 <form name="signupCustomerForm" id="signupCustomerForm" action="signupCustomer.do">
 	<h3>회원가입</h3>
 	<hr style="width: 80%;">
@@ -177,7 +176,7 @@ $(function(){
 			</tr>
 			<tr>
 			
-				<td> <input type="text" name="textid" value="아이디*" readonly="readonly" style="text-align: center"></td>
+				<td> <input type="text" name="text" value="아이디*" readonly="readonly" style="text-align: center"></td>
 				<td> <input type="text" name="cId"	id="cId" placeholder="아이디를 입력하세요" onkeydown="inputcIdChk()">
 				<input type="button" name="Idcheck" value="중복체크" onclick=" opencIdChk(this.form.cId.value);">
 				<input type="hidden" name ="idDuplication" id="idDuplication" value="idUncheck" size="1">

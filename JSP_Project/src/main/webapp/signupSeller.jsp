@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
 <title>Insert title here</title>
 </head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
 <!-- 주소 API 다음API에서 가져옴  -->
 <!-- 20021.05.14 최수훈 -->
@@ -58,12 +57,9 @@ $(function(){
 	          if(f){
 	             alert(form.sName.value + "님의 회원가입이 완료되었습니다!")
 	              return true;
-	             
 	          } else {
 	              return false;
 	          }
-        	  
-          
       },
       //규칙
       rules: {
@@ -106,8 +102,8 @@ $(function(){
           sNumber: {
         	  required : true
           },
-	          idDuplication:{
-	        	  equalTo : '#idDuplication2'
+	      pName :{
+	    	  required : false
           }
       },
       
@@ -168,6 +164,7 @@ $(function(){
 </script>
 
 <body>
+<jsp:include page="header.jsp"></jsp:include>
 <form name ="signupSellerForm" id="signupSellerForm" action="signupSeller.do" >
 	<h3>회원가입</h3>
 	<hr style="width: 80%;">
@@ -176,7 +173,7 @@ $(function(){
 				<td> <h4>판매 회원 기본정보</h4> </td>
 			</tr>
 			<tr>
-				<td> <input type="text" name="textid" value="아이디*" readonly="readonly" style="text-align: center" onkeydown="inputIdChk()"></td>
+				<td> <input type="text" name="text" value="아이디*" readonly="readonly" style="text-align: center" onkeydown="inputIdChk()"></td>
 				<td> <input type="text" name="sId" id="sId" placeholder="아이디를 입력하세요" onkeydown="inputsIdChk()">
 				<input type="button" name="Idcheck" value="중복체크" onclick="opensIdChk(this.form.sId.value)">
 				<input type="hidden" name ="idDuplication"id="idDuplication" value="idUncheck" size="1">

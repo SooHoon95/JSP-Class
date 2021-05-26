@@ -4,13 +4,22 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" href="css.css">
+	<title>Insert tile here</title>
+	<link rel="stylesheet" href="css1.css">
 </head>
+
+<style type="text/css">
+	.search {
+		width: 200px;
+		height: 46px;
+		border: 2px solid red;
+		float: left;
+	}
+</style>
+
 <body>
-	<header>
+	<header>	
 		<!-- 최상단 메뉴 -->
-		
 		<div class="top">
 			<ul class="top_list">
 				<li><a href="">장바구니</a></li>
@@ -24,7 +33,7 @@
 		
 		<!-- 로고 -->
 		<div class="logo">
-			<a href=""><h1>마감임박!!</h1></a>
+			<a href="main.do"><h1>마감임박!!</h1></a>
 		</div>
 		<!-- //로고 -->
 		
@@ -32,18 +41,41 @@
 		<div class="category">
 			<nav>
 				<ul class="category_list">
-					<li><a href="">Best</a></li>
-					<li><a href="">New</a></li>
-					<li><a href="">마감임박</a></li>
-					<li><a href="">주방용품</a></li>
-					<li><a href="">세탁용품</a></li>
-					<li><a href="">청소용품</a></li>
-					<li><a href="">인테리터소품</a></li>
-					<li><a href="">통조림</a></li>
-					<li><a href="">냉동식품</a></li>
-					<li><a href="">식음료</a></li>
+					<li><a href="best.do">Best</a></li>
+					<li><a href="new.do">New</a></li>
+					<li><a href="deadline.do">마감임박</a></li>
+					<li><a href="category.do?pCategory=주방용품">주방용품</a></li>
+					<li><a href="category.do?pCategory=세탁용품">세탁용품</a></li>
+					<li><a href="category.do?pCategory=청소용품">청소용품</a></li>
+					<li><a href="category.do?pCategory=인테리어소품">인테리어소품</a></li>
+					<li><a href="category.do?pCategory=통조림">통조림</a></li>
+					<li><a href="category.do?pCategory=냉동식품">냉동식품</a></li>
+					<li><a href="category.do?pCategory=식음료">식음료</a></li>
 				</ul>
 			</nav>
+			<div class="search">
+				<form action="search.do">
+					<input type="text" name="pName" id="pName">
+					<input type="submit" value="검색">
+				</form>
+				<!-- <div>
+		            <a class="uk-navbar-toggle" href="#" uk-search-icon></a>
+		            <div class="uk-navbar-dropdown" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !nav">
+		
+		                <div class="uk-grid-small uk-flex-middle" uk-grid>
+		                    <div class="uk-width-expand">
+		                        <form action="search.do" class="uk-search uk-search-navbar uk-width-1-1">
+		                            <input class="uk-search-input" type="search" placeholder="Search" autofocus>
+		                        </form>
+		                    </div>
+		                    <div class="uk-width-auto">
+		                        <a class="uk-navbar-dropdown-close" href="#" uk-close></a>
+		                    </div>
+		                </div>
+		
+		            </div>
+		        </div> -->
+			</div>
 		</div>
 		<!-- //카테고리 -->
 	</header>

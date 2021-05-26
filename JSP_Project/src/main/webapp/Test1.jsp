@@ -5,8 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="cssSH.css">
+<title>Log in</title>
+<style type="text/css">
+.gosignup{
+margin: auto;
+}
+</style>
 </head>
+<!-- 선긋고 그 중간에 텍스트 입력하기 폼 2021.05.13 최수훈 -->
 <!-- 체크박스 하나만 체크하기 -->
 <script type="text/javascript">
 
@@ -21,60 +28,75 @@ function checkOnlyOne(element) {
 	  
 	  element.checked = true;
 	}
+	
+function chkValue() {
+	f= document.loginActionForm;
+	if(f.loginId.value == ""){
+		alert('아이디를 입력해주세요');
+		return false;
+	}
+	else if(f.loginPw.value ==""){
+		alert('패스워드를 입력해주세요');
+		return false;
+	}
+	f.submit();
+	return true;
+}
 	</script>
-<!-- 버튼 액션1 :비밀번호찾기로 이동 -->
-<script>
-	function info_chk() {
-		return true;
-	}
-	function findPw(frm) {
-		frm.action='FindPw.jsp';
-		frm.submit();
-		return true;
-	}
-<!-- 버튼 액션 2 : 로그인으로 이동 -->
-
-	function backLogin(frm) {
-		frm.action='Login_View.jsp';
-		frm.submit();
-		return true;
-	}
-</script>
-
 
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-<br>
-	<h4>아이디 찾기</h4>
-	<hr>
-	<div>
-	<center>
-		<form action="findId.do" method="post">
-					<h5 style="text-align: center;">회원아이디 찾기</h5>
-					<br>
-					<p style="line-height: 10pt"><input type="text" name="findName" id="findName" placeholder="이름을 입력하세요"  size="50" style="text-align: left; height: 15pt"></p>
-					<br>
-					<p style="line-height: 10pt"><input type="text" name="findEmail" id="findEmail" placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt;"></p>
-					<br>
-					<input type="submit" value="아이디 찾기" style="width: 290pt; height: 18pt;">
-					<br>
-					<br>
-				<div style="font-size: 9pt">
-					<p style="line-height: 10pt">	
-						 <input type="checkbox" name="findUserType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)' "> 구매회원
-						 &nbsp;&nbsp;&nbsp;
-						 <input type="checkbox" name="findUserType" value="판매회원" onclick='checkOnlyOne(this)' style="font-size: 9pt;"> 판매회원
-				 	</p>
+ <jsp:include page="header.jsp"></jsp:include>
+ <br>
+	<div class="wrap">
+		<div class="login">
+			<h2>Log-In</h2>
+				<form action="loginaction.do" method="post" name="loginActionForm">
+						<div class="signup">
+							<div class="loginId">
+								<h4><i>ID</i></h4>
+								<input type="text" name="loginId" placeholder="ID를 입력하세요" id="loginId" >
+							</div>
+							
+							<br>
+							
+							<div class="loginPw">
+								<h4><i>Password</i></h4>
+								<input type="password" placeholder="패스워드를 입력하세요" id="loginPw" name="loginPw" >
+							</div>
+							<div style="font-size: 1.8pt; color: red; text-align: center; margin-top: 15px;" color="red" size="1.8pt">
+							<font color="red" size="1.8pt" >
+							<i>가입되지 않은 아이디이거나, 잘못된 비밀번호입니다.</i>
+							</font>
+							</div>
+							<div class="login_etc">
+							<input type="checkbox" name="userType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)'> 구매회원 
+							<input type="checkbox" name="userType" value="판매회원" onclick='checkOnlyOne(this)'>판매회원
+							</div>
+							<div class="findAction">
+							<a href = "FindId.jsp"><i style="font-size: 3pt; ">아이디</i></a> 
+							<a href = "FindPw.jsp"><i style="font-size: 3pt; ">비밀번호 찾기</i></a>
+							</div>
+							<div class="submit">
+							<input type="button" value="login" onclick="chkValue()">
+							</div>
+						</div>
+						<br>
+						<div class="hr-sect">아직 회원이 아니신가요?</div>
+						<br>
+				</form>
+				
+				<form action="AgreementTerms.jsp" method="post">
+				<div class="gosignup">
+					<input type="submit" value="회원가입">
 				</div>
-					<br>
-						 
-				<input type="button" name="Idcheck" value="비밀번호찾기" onclick=" return findPw(this.form);" style="width: 90pt">
-				&nbsp;&nbsp;
-				<input type="button" name="Idcheck" value="로그인하기" onclick='return backLogin(this.form);' style="width: 90pt">
-			
-		</form>
-	</center>
+				</form>
+		</div>
 	</div>
-<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
+
+
+<font color="red" size="2pt">
+					<i>가입되지 않은 아이디이거나, 잘못된 비밀번호입니다.</i>
+				</font>

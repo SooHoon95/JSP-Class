@@ -9,7 +9,24 @@
 </head>
 <!-- 체크박스 하나만 체크하기 -->
 <script type="text/javascript">
-
+function chkValue() {
+	var form = document.findPwForm
+	
+	if(form.inputId.value == ""){
+		alert("ID를 입력해주세요");
+		form.inputId.focus();
+		return false;
+	}else if (form.inputName.value == ""){
+		alert("이름을 입력해주세요");
+		form.inputName.focus();
+		return false;
+	}else if (form.inputEmail.value == ""){
+		alert("이메일을 입력해주세요");
+		form.inputEmail.focus();
+		return false;
+	}
+	form.submit();
+}
 
 function checkOnlyOne(element) {
 	  
@@ -23,6 +40,7 @@ function checkOnlyOne(element) {
 	  element.checked = true;
 	}
 	</script>
+	
 <script type="text/javascript">
 	function findId(frm) {
 		frm.action='FindId.jsp'
@@ -37,22 +55,21 @@ function checkOnlyOne(element) {
 <h4>비밀번호 찾기</h4>
 <hr>
 <center>
-	<form action="findPw.do">
+	<form name="findPwForm" id="findPwForm" action="findPw.do" method="post">
 			<h5 style="text-align: center;"> 비밀번호 찾기 </h5>
 			<br>
 				<p style="line-height: 10pt">
 				<input type="text" name="inputId" id="inputId" placeholder="아이디를 입력하세요" size="50" style="text-align: left; height: 15pt"></p>
 				<br>
 				<p style="line-height: 10pt">
-				<input type="text" name="inputName" id="inputId" placeholder="이름을 입력하세요" size="50" style="text-align: left; height: 15pt"></P>
+				<input type="text" name="inputName" id="inputName" placeholder="이름을 입력하세요" size="50" style="text-align: left; height: 15pt"></P>
 				<br>
 				<p style="line-height: 10pt">
-				<input type="text" name="inputEmail" id="inputId" placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt"></p>
+				<input type="text" name="inputEmail" id="inputEmail" placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt"></p>
 				<br>
-				<input type="submit" value="비밀번호찾기" style="width: 290pt; height: 18pt;">
+				<input type="button" onclick="chkValue()" value="비밀번호찾기" style="width: 290pt; height: 18pt;">
 				<br>
 				<br>
-				
 				<div style="font-size: 9pt">
 					<p style="line-height: 10pt">	
 						 <input type="checkbox" name="findUserType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)' "> 구매회원

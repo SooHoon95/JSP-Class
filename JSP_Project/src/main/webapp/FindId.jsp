@@ -13,7 +13,7 @@
 function checkOnlyOne(element) {
 	  
 	  const checkboxes 
-	      = document.getElementsByName("userType");
+	      = document.getElementsByName("findUserType");
 	  
 	  checkboxes.forEach((cb) => {
 	    cb.checked = false;
@@ -24,7 +24,17 @@ function checkOnlyOne(element) {
 	</script>
 <!-- 버튼 액션1 :비밀번호찾기로 이동 -->
 <script>
-	function info_chk() {
+	function chkValue() {
+		var form = document.findIdForm;
+		if(form.findName.value == ""){
+			alert('이름을 입력해주세요');
+			return false;
+		}else if (form.findEmail.value == ""){
+			alert('이메일을 입력해주세요')
+			return false;
+		}
+		form.submit();
+		
 		return true;
 	}
 	function findPw(frm) {
@@ -48,7 +58,7 @@ function checkOnlyOne(element) {
 	<h4>아이디 찾기</h4>
 	<hr>
 	<center>
-		<form action="findId.do" method="post">
+		<form name="findIdForm" id="findIdForm" action="findId.do" method="post">
 					<h5 style="text-align: center;">회원아이디 찾기</h5>
 					<br>
 					<p style="line-height: 10pt"><input type="text" name="findName" id="findName" 
@@ -57,7 +67,7 @@ function checkOnlyOne(element) {
 					<p style="line-height: 10pt"><input type="text" name="findEmail" id="findEmail"
 						placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt;"></p>
 					<br>
-					<input type="submit" value="아이디 찾기" style="width: 290pt; height: 18pt;">
+					<input type="button" value="아이디 찾기" onclick="chkValue()" width: 290pt; height: 18pt;">
 					<br>
 					<br>
 						<div style="font-size: 9pt">
